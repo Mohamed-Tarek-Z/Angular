@@ -17,6 +17,7 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
 import { DishService } from './Services/dish.service';
 import { PromotionService } from './Services/promotion.service';
+import { CorporateService } from './Services/corporate.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -47,7 +48,8 @@ import { ContactComponent } from './contact/contact.component';
   ],
   providers: [
     DishService,
-    PromotionService
+    PromotionService,
+    CorporateService
   ],
   bootstrap: [AppComponent]
 })
