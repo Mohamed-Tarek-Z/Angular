@@ -16,6 +16,7 @@ import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component'; 
 
 import { DishService } from './Services/dish.service';
+import { PromotionService } from './Services/promotion.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -45,7 +46,8 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule
   ],
   providers: [
-    DishService
+    DishService,
+    PromotionService
   ],
   bootstrap: [AppComponent]
 })

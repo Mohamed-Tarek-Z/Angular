@@ -1,5 +1,6 @@
 import { Dish } from "./dish";
-var ext = "png";
+import { ext } from "./amyvars";
+
 export const DISHES: Dish[] = [
     {
         id: "0",
