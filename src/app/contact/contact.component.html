@@ -37,26 +37,32 @@
   </div>
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value| json }} {{ feedbackForm.status|json }} </p>
+    <!-- <p>{{ feedbackForm.value| json }} {{ feedbackForm.status|json }} </p> -->
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-          <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">First Name is req</mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname').hasError('required')"> {{ validationMessages.firstname.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname').hasError('minlength')"> {{ validationMessages.firstname.minlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname').hasError('maxlength')"> {{ validationMessages.firstname.maxlength }} </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-          <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">Last Name is req</mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname').hasError('required')"> {{ validationMessages.lastname.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname').hasError('minlength')"> {{ validationMessages.lastname.minlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname').hasError('maxlength')"> {{ validationMessages.lastname.maxlength }} </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="telnumber" type="tel" required>
-          <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">telnum is req</mat-error>
+          <input matInput formControlName="telnum" placeholder="telnumber" type="tel">
+          <mat-error *ngIf="feedbackForm.get('telnum').hasError('required')"> {{ validationMessages.telnum.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('telnum').hasError('pattern')"> {{ validationMessages.telnum.pattern }} </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="email" placeholder="Email" type="email" required>
-          <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">email is req</mat-error>
+          <mat-error *ngIf="feedbackForm.get('email').hasError('required')"> {{ validationMessages.email.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('email').hasError('email')"> {{ validationMessages.email.email }} </mat-error>
         </mat-form-field>
       </p>
       <table class="form-size">
