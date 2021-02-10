@@ -9,6 +9,13 @@ import { ContactType, Feedback } from '../shared/feedback';
 })
 export class ContactComponent implements OnInit {
 
+  formErrors = {
+    firstname: '',
+    lastname: '',
+    telnum: '',
+    email: ''
+  };
+
   validationMessages = {
     firstname: {
       required: 'First Name is required.',
@@ -48,12 +55,20 @@ export class ContactComponent implements OnInit {
     this.feedbackForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      telnum: [0, [Validators.required, Validators.pattern('[0-9]*')]],
+      telnum: ['' , [Validators.required, Validators.pattern('[0-9]*')]],
       email: ['', [Validators.required, Validators.email]],
       agree: false,
       contacttype: 'None',
       message: ''
     });
+    this.feedbackForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
+  }
+
+  onValueChanged(data?: any): void {
+    if (!this.feedbackForm) { return; }
+    const form = this.feedbackForm;
   }
 
   onSubmit(): void {
@@ -62,7 +77,7 @@ export class ContactComponent implements OnInit {
     this.feedbackForm?.reset({
       firstname: '',
       lastname: '',
-      telnum: 0,
+      telnum: '',
       email: '',
       agree: false,
       contacttype: 'None',

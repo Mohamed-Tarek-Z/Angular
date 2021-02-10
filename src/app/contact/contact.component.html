@@ -42,27 +42,27 @@
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-          <mat-error *ngIf="feedbackForm.get('firstname').hasError('required')"> {{ validationMessages.firstname.required }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('firstname').hasError('minlength')"> {{ validationMessages.firstname.minlength }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('firstname').hasError('maxlength')"> {{ validationMessages.firstname.maxlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname')?.hasError('required')"> {{ validationMessages.firstname.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname')?.hasError('minlength')"> {{ validationMessages.firstname.minlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('firstname')?.hasError('maxlength')"> {{ validationMessages.firstname.maxlength }} </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-          <mat-error *ngIf="feedbackForm.get('lastname').hasError('required')"> {{ validationMessages.lastname.required }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('lastname').hasError('minlength')"> {{ validationMessages.lastname.minlength }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('lastname').hasError('maxlength')"> {{ validationMessages.lastname.maxlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname')?.hasError('required')"> {{ validationMessages.lastname.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname')?.hasError('minlength')"> {{ validationMessages.lastname.minlength }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('lastname')?.hasError('maxlength')"> {{ validationMessages.lastname.maxlength }} </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="telnum" placeholder="telnumber" type="tel">
-          <mat-error *ngIf="feedbackForm.get('telnum').hasError('required')"> {{ validationMessages.telnum.required }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('telnum').hasError('pattern')"> {{ validationMessages.telnum.pattern }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('telnum')?.hasError('required')"> {{ validationMessages.telnum.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('telnum')?.hasError('pattern')"> {{ validationMessages.telnum.pattern }} </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="email" placeholder="Email" type="email" required>
-          <mat-error *ngIf="feedbackForm.get('email').hasError('required')"> {{ validationMessages.email.required }} </mat-error>
-          <mat-error *ngIf="feedbackForm.get('email').hasError('email')"> {{ validationMessages.email.email }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('email')?.hasError('required')"> {{ validationMessages.email.required }} </mat-error>
+          <mat-error *ngIf="feedbackForm.get('email')?.hasError('email')"> {{ validationMessages.email.email }} </mat-error>
         </mat-form-field>
       </p>
       <table class="form-size">
