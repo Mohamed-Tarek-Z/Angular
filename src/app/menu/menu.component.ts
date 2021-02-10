@@ -9,13 +9,13 @@ import { DishService } from '../Services/dish.service';
 })
 export class MenuComponent implements OnInit {
 
-  dishes?: Dish[];
+  dishes!: Dish[];
 
-  selectedDish?: Dish;
+  selectedDish!: Dish;
 
   constructor(private dishService: DishService) { }
 
-  onSelect(dish?: Dish): void {
+  onSelect(dish: Dish): void {
     this.selectedDish = dish;
   }
 

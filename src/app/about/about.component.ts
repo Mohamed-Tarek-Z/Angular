@@ -9,7 +9,7 @@ import { CorporateService } from '../Services/corporate.service';
 })
 export class AboutComponent implements OnInit {
 
-  leaders?: Leader[];
+  leaders!: Leader[];
   constructor(private corporateService: CorporateService) { }
 
   ngOnInit(): void {

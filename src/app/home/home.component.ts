@@ -14,9 +14,9 @@ import { CorporateService } from '../Services/corporate.service';
 })
 export class HomeComponent implements OnInit {
 
-  dish?: Dish;
-  promotion?: Promotion;
-  leader?: Leader;
+  dish!: Dish;
+  promotion!: Promotion;
+  leader!: Leader;
 
   constructor(private dishService: DishService,
               private promotionService: PromotionService,
