@@ -1,1 +1,1 @@
-export const ext = "png";
+export const ext = 'png';

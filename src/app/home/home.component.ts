@@ -13,19 +13,19 @@ import { CorporateService } from '../Services/corporate.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+
   dish?: Dish;
   promotion?: Promotion;
   leader?: Leader;
 
   constructor(private dishService: DishService,
-     private promotionService: PromotionService,
-     private corporateService: CorporateService) { }
+              private promotionService: PromotionService,
+              private corporateService: CorporateService) { }
 
   ngOnInit(): void {
-    this.dishService.getFeaturedDish().then((dish) => this.dish = dish);
-    this.promotionService.getFeaturedPromotion().then((promotion) => this.promotion = promotion);
-    this.corporateService.getFeaturedLeader().then((leader) => this.leader = leader);
+    this.dishService.getFeaturedDish().subscribe((dish) => this.dish = dish);
+    this.promotionService.getFeaturedPromotion().subscribe((promotion) => this.promotion = promotion);
+    this.corporateService.getFeaturedLeader().subscribe((leader) => this.leader = leader);
   }
 
 }
