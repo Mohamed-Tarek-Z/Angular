@@ -11,11 +11,12 @@ import { publish } from 'rxjs/operators';
 export class MenuComponent implements OnInit {
 
   dishes!: Dish[];
+  errMess!: string;
 
-  constructor(private dishService: DishService, @Inject('BaseURL') public BaseURL:string ) { }
+  constructor(private dishService: DishService, @Inject('BaseURL') public BaseURL:string, @Inject('ext') public ext:string ) { }
 
   ngOnInit(): void {
-    this.dishService.getDishes().subscribe((dishes) => this.dishes = dishes) ;
+    this.dishService.getDishes().subscribe((dishes) => this.dishes = dishes, errmess => this.errMess = <any>errmess) ;
   }
 
 }

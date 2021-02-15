@@ -29,6 +29,7 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './Services/dish.service';
 import { PromotionService } from './Services/promotion.service';
 import { CorporateService } from './Services/corporate.service';
+import { ProcessHTTPMsgService } from './Services/process-httpmsg.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -36,6 +37,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { BaseURL } from './shared/baseurl';
+import { ext } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { BaseURL } from './shared/baseurl';
     DishService,
     PromotionService,
     CorporateService,
-    { provide: 'BaseURL', useValue: BaseURL }
+    ProcessHTTPMsgService,
+    { provide: 'BaseURL', useValue: BaseURL },
+    { provide: 'ext', useValue: ext }
   ],
   entryComponents: [
     LoginComponent
