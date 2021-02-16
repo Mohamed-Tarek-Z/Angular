@@ -44,11 +44,10 @@ export class ContactComponent implements OnInit {
   @ViewChild('fform') feedbackFormDirective: any;
 
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
-   }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.createForm();
   }
 
   createForm(): void {

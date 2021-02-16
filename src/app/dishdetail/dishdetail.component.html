@@ -43,7 +43,7 @@
             <p matLine> <span> -- {{commentForm.get('author')?.value}} {{commentForm.get('date')?.value| date }} </span> </p>
         </div>
 
-        <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
 
             <p>
               <mat-form-field class="full-width">

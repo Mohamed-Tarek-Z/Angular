@@ -1,6 +1,6 @@
 export class Comment {
-    rating!: number | any;
-    comment!: string | any;
-    author!: string | any;
-    date!: string | any;
+    rating!: number;
+    comment!: string;
+    author!: string;
+    date!: string;
 }

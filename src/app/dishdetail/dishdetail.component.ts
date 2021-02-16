@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
+import { Comment } from '../shared/comment';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { DishService } from '../Services/dish.service';
@@ -25,13 +26,15 @@ export class DishdetailComponent implements OnInit {
       minlength: 'comment must be at least 2 characters long.'
     }
   };
-    dish!: Dish;
+    @ViewChild('cform') commentFormDirective: any;
+    dish!: Dish | any;
     dishIds!: string[];
     prev!: string;
     next!: string;
     commentForm!: FormGroup;
-    coment!: Comment;
+    comment!: Comment;
     errMess!: string;
+    dishcopy!: Dish | any;
 
     constructor(private dishService: DishService,
                 private route: ActivatedRoute,
@@ -39,36 +42,47 @@ export class DishdetailComponent implements OnInit {
                 private fb: FormBuilder,
                 @Inject('BaseURL') public BaseURL:string,
                 @Inject('ext') public ext:string
-                ) {
-      this.createForm();
-    }
+                ) {}
 
     createForm(): void {
       this.commentForm = this.fb.group({
-        rating: [2],
-        comment: ['', [Validators.required, Validators.minLength(2)]],
         author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-        date: new Date().toISOString()
+        rating: 5,
+        comment: ['', [Validators.required, Validators.minLength(2)]]
       });
+      this.commentForm.valueChanges.subscribe(data => this.onValueChanged(data));
+      this.onValueChanged();
     }
 
     onSubmit(): void {
-      this.coment = this.commentForm?.value;
-      console.log(this.coment);
-      // this.dish.comments.push(this.coment);a7a
+      this.comment = this.commentForm?.value;
+      this.comment.date = new Date().toISOString();
+      console.log(this.comment);
+      this.dishcopy.comments.push(this.comment);
+      this.dishService.putDish(this.dishcopy).subscribe(dish => {
+         this.dish = dish;
+         this.dishcopy = dish;},
+         errmess => {
+            this.dish = null;
+            this.dishcopy = null;
+            this.errMess = <any>errmess;
+          });
+
+      this.commentFormDirective.resetForm();
       this.commentForm?.reset({
-        rating: 5,
-        comment: '',
         author: '',
-        date: new Date().toISOString()
+        rating: 5,
+        comment: ''
       });
     }
 
 
     ngOnInit(): void {
+      this.createForm();
       this.dishService.getDishIds().subscribe((dishIds) => this.dishIds = dishIds, errmess => this.errMess = <any>errmess);
       this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params.id))).subscribe((dish) => {
           this.dish = dish;
+          this.dishcopy = dish;
           this.setPrevNext(dish.id);
         }, errmess => this.errMess = <any>errmess
       );
@@ -82,5 +96,10 @@ export class DishdetailComponent implements OnInit {
 
     goBack(): void {
       this.location.back();
+    }
+
+    onValueChanged(data?: any): void {
+      if (!this.commentForm) { return; }
+      const form = this.commentForm;
     }
 }
