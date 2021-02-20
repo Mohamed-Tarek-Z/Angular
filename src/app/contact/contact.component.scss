@@ -1,13 +1,19 @@
 .full-width {
+    align-self: center;
     width: 95%;
 }
 
 .half-width {
+    align-self: center;
     margin-left: 2%;
     width: 45%;
 }
 
 .form-size {
-    margin-left: 20%;
+    align-self: center;
     width: 75%;
+}
+
+.center {
+    align-self: center;
 }
