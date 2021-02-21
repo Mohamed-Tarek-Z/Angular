@@ -8,9 +8,17 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
-    await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('conFusion app is running!');
+  it('should display message Ristorante Con Fusion', async () => {
+    await page.navigateTo('/');
+    expect(await page.getTitleText('app-root h1')).toEqual('Ristorante Con Fusion');
+  });
+
+  it('should nav to about',async () => {
+    page.navigateTo('/');
+    let navlink = page.getAllElement('a').get(1);
+    await navlink.click();
+
+    expect(await page.getTitleText('h3')).toBe('About Us');
   });
 
   afterEach(async () => {
