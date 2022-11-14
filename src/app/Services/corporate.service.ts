@@ -14,15 +14,15 @@ export class CorporateService {
   constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getLeaders(): Observable<Leader[]> {
-    return  this.http.get<Leader[]>(BaseURL + 'leadership').pipe(catchError(this.processHTTPMsgService.handleError));
+    return  this.http.get<Leader[]>(BaseURL + 'leaders').pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getLeader(id: string): Observable<Leader> {
-    return  this.http.get<Leader>(BaseURL + 'leadership/' + id).pipe(catchError(this.processHTTPMsgService.handleError));
+    return  this.http.get<Leader>(BaseURL + 'leaders/' + id).pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getFeaturedLeader(): Observable<Leader> {
-    return this.http.get<Leader[]>(BaseURL + 'leadership?featured=true').pipe(map(Leaderes => Leaderes[0])).pipe(catchError(this.processHTTPMsgService.handleError));
+    return this.http.get<Leader[]>(BaseURL + 'leaders?featured=true').pipe(map(Leaderes => Leaderes[0])).pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
 }

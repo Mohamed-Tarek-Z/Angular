@@ -20,8 +20,7 @@
             <mat-card-actions>
                 <button mat-button [routerLink] = "['/dishdetail',prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
                 <button mat-button (click) = "goBack()">Back</button>
-                <button mat-button>Like</button>
-                <button mat-button>Share</button>
+                <button mat-button (click)="addToFavorites()"><span class="{{favorite ? 'fa fa-heart fa-lg' : 'fa fa-heart-o fa-lg'}}"></span></button>
                 <span class="flex-spacer"></span>
                 <button mat-button [routerLink] = "['/dishdetail',next]"><span class="fa fa-chevron-right fa-lg"></span></button>
             </mat-card-actions>
@@ -44,15 +43,6 @@
         </div>
 
         <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
-
-            <p>
-              <mat-form-field class="full-width">
-                <input matInput formControlName="author" placeholder="Your Name" type="text">
-                <mat-error *ngIf="commentForm.get('author')?.hasError('required')"> {{ validationMessages.author.required }} </mat-error>
-                <mat-error *ngIf="commentForm.get('author')?.hasError('minlength')"> {{ validationMessages.author.minlength }} </mat-error>
-                <mat-error *ngIf="commentForm.get('author')?.hasError('maxlength')"> {{ validationMessages.author.maxlength }} </mat-error>
-              </mat-form-field>
-            </p>
             <p>
                 <mat-slider formControlName="rating" thumbLabel tickInterval="4" min="0" max="4"></mat-slider>
             </p>

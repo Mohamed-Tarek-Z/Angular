@@ -1,2 +1,2 @@
-export const BaseURL = 'http://localhost:3000/';
-export const ext = 'jpg';
+export const BaseURL = 'https://localhost:3443/';
+export const ext = 'png';

@@ -30,15 +30,22 @@ import { DishService } from './Services/dish.service';
 import { PromotionService } from './Services/promotion.service';
 import { CorporateService } from './Services/corporate.service';
 import { ProcessHTTPMsgService } from './Services/process-httpmsg.service';
+import { AuthService } from './Services/auth.service';
+import { AuthInterceptor, UnauthorizedInterceptor } from './Services/auth.interceptor';
+import { FavoriteService } from './Services/favorite.service';
+import { AuthGuardService } from './Services/auth-guard.service';
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '../../home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { BaseURL } from './shared/baseurl';
 import { ext } from './shared/baseurl';
 import { HighlightDirective } from './directives/highlight.directive';
+import { FavoritesComponent } from './favorites/favorites.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,7 +58,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    HighlightDirective
+    HighlightDirective,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +88,19 @@ import { HighlightDirective } from './directives/highlight.directive';
     PromotionService,
     CorporateService,
     ProcessHTTPMsgService,
+    AuthService,
+    AuthGuardService,
+    FavoriteService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    },
     { provide: 'BaseURL', useValue: BaseURL },
     { provide: 'ext', useValue: ext }
   ],

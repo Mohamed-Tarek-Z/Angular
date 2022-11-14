@@ -7,7 +7,11 @@ import { flyInOut, expand } from '../animations/app.animations';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  host: { '[@flyInOut]': 'true', 'style': 'display: block;'},
+  // tslint:disable-next-line:use-host-property-decorator
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
   animations: [
     flyInOut(),
     expand()
@@ -18,10 +22,19 @@ export class MenuComponent implements OnInit {
   dishes!: Dish[];
   errMess!: string;
 
-  constructor(private dishService: DishService, @Inject('BaseURL') public BaseURL:string, @Inject('ext') public ext:string ) { }
+  selectedDish!: Dish;
 
-  ngOnInit(): void {
-    this.dishService.getDishes().subscribe((dishes) => this.dishes = dishes, errmess => this.errMess = <any>errmess) ;
+  constructor(private dishService: DishService,
+    @Inject('BaseURL') public BaseURL:string, @Inject('ext') public ext:string ) { }
+
+  ngOnInit() {
+    this.dishService.getDishes()
+      .subscribe(dishes => this.dishes = dishes,
+        errmess => this.errMess = <any>errmess);
+  }
+
+  onSelect(dish: Dish) {
+    this.selectedDish = dish;
   }
 
 }

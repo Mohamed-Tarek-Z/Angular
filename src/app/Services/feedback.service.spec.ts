@@ -1,16 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 import { FeedbackService } from './feedback.service';
 
 describe('FeedbackService', () => {
-  let service: FeedbackService;
-
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FeedbackService);
+    TestBed.configureTestingModule({
+      providers: [FeedbackService]
+    });
   });
 
-  it('should be created', () => {
+  it('should be created', inject([FeedbackService], (service: FeedbackService) => {
     expect(service).toBeTruthy();
-  });
+  }));
 });
